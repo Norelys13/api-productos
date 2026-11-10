@@ -3,7 +3,7 @@
 //Clientes > clientes.controller > clientes.routes
 //Proveedores > proveedor.controller > proveedor.routes
 
-const { Router,Router } = require('express')
+const { Router } = require('express')
 
 const productoRoutes = require('./producto.routes')
 
