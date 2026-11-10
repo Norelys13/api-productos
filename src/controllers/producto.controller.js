@@ -20,7 +20,6 @@ const validarCampos = ({marca, descripcion, precio, stock} = {}) =>{
     return errores
 }
 
-
 const listarProductos = async(req, res) => {
   try{
     const [productos] = await pool.query('SELECT * FROM productos ORDER BY id')
@@ -147,7 +146,22 @@ const actualizarProductos = async(req, res) => {
 
 const eliminarProductos = async(req, res) => { 
   try{
-    
+    const id = Number(req.params.id)
+
+    const [resultado] = await pool.execute('DELETE FROM productos WHERE id = ?', [id])
+
+    if (resultado.affectedRows === 0){
+      return res.status(404).json({
+        ok: false,
+        message: 'El ID no existe'
+      })
+    }
+
+    res.status(200).json({
+    ok: true,
+    message: 'Producto eliminado'
+    })
+
   }catch(e){
     console.error(e)
     res.status(500).json({
