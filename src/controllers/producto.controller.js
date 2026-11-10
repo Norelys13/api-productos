@@ -2,7 +2,6 @@
 // 5 procedimientos: buscar, listar, registrar, actualizar, eliminar
 
 //PASO1
-
 const { pool } = require('../config/database')
 const CAMPOS = 'id, marca, descripcion, precio, stock' //Dato común
 
@@ -11,7 +10,7 @@ const CAMPOS = 'id, marca, descripcion, precio, stock' //Dato común
 //Todas las funciones reciben y envían datos (pasarelas)
 const listarProductos = async(req, res) => {
   try{
-    console [productos] = await pool.query('SELECT * FROM productos ORDER BY id')
+    const [productos] = await pool.query('SELECT * FROM productos ORDER BY id')
     res.status(200).json({
       ok: true,
       total: productos.lenght,
@@ -38,7 +37,7 @@ const obtenerProductos = async(req, res) => {
 
     await pool.execute(`SELECT * FROM productos WHERE id = ?`, [id])
 
-    if (registros.lenght === 0){
+    if (registro.lenght === 0){
       return res.status(404).json({
         ok: false,
         message: 'No existe el producto'
