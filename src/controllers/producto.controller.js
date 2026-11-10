@@ -13,7 +13,7 @@ const listarProductos = async(req, res) => {
     const [productos] = await pool.query('SELECT * FROM productos ORDER BY id')
     res.status(200).json({
       ok: true,
-      total: productos.lenght,
+      total: productos.length,
       data: productos
     })
   }catch(e){
