@@ -6,5 +6,6 @@ const router = Router()
 router.get('/', controller.listarProductos)
 router.get('/:id', controller.obtenerProductos)
 router.post('/', controller.crearProductos)
+router.put('/:id', controller.actualizarProductos)
 
 module.exports = router

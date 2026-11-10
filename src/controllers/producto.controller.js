@@ -101,7 +101,41 @@ const crearProductos = async(req, res) => {
 
 const actualizarProductos = async(req, res) => { 
   try{
-    
+    const id = Number (req.params.id)
+
+    if(id < 0){
+      return res.status(400).json({
+        ok: false,
+        message: 'El ID no puede ser negativo'
+      })
+    }
+
+    const errores = validarCampos(req.body)
+    if (errores.length > 0){
+      return res.status(400).json({
+        ok: false,
+        message: 'Verifique los datos solicitados',
+        errores
+      })
+    }
+
+    const [existe] = await pool.execute('SELECT id FROM productos WHERE id = ?', [id])
+    if (existe === 0){
+      return res.status(404).json({
+        ok: false,
+        message: 'El ID no existe'
+      })
+    }
+
+    const consulta = 'UPDATE productos SET marca=?, descripcion=?, precio=?, stock=? WHERE id=?'
+    const { marca, descripcion, precio, stock } = req.body
+    const [resultado] = await pool.execute(consulta, [marca, descripcion, precio, stock, id])
+
+    res.status(200).json({
+      ok: true,
+      filasAfectadas: resultado.affectedRows
+    })
+
   }catch(e){
     console.error(e)
     res.status(500).json({
