@@ -14,7 +14,11 @@ const pool = mysql.createPool({
 })
 
 //Verificar la conexión
-const probarConexion = async() => {}
+const probarConexion = async() => {
+  const conexion = await pool.getConnection()
+  await conexion.ping() //Test
+  conexion.release() //Desconexión
+}
 
 //Exportar la conexión
 module.exports = { pool, probarConexion }
