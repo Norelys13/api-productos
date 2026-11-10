@@ -1,1 +1,20 @@
-const mysql = require('')
+const mysql = require('mysql2/promise')
+const { db } = require('./env')
+
+//Este archivo gestiona la conexion al server y a la BD
+const pool = mysql.createPool({
+  host: db.host,
+  port: db.port,
+  user: db.user,
+  password: db.password,
+  database: db.database,
+  waitForConnections: true,
+  connectionLimit: db.connectionLimit,
+  queueLimit: 0
+})
+
+//Verificar la conexión
+const probarConexion = async() => {}
+
+//Exportar la conexión
+module.exports = { pool, probarConexion }
