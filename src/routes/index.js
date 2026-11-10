@@ -1,7 +1,7 @@
 //Nuestra aplicacion puede tener muchos modulos:
 //Productos > productos.controller > producto.routes
 //Clientes > clientes.controller > clientes.routes
-//Clientes > clientes.controller > clientes.routes
+//Proveedores > proveedor.controller > proveedor.routes
 
 const { Router,Router } = require('express')
 
