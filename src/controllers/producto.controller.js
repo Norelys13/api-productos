@@ -35,9 +35,9 @@ const obtenerProductos = async(req, res) => {
       })
     }
 
-    await pool.execute(`SELECT * FROM productos WHERE id = ?`, [id])
+    const [registro] = await pool.execute(`SELECT * FROM productos WHERE id = ?`, [id])
 
-    if (registro.lenght === 0){
+    if (registro.length === 0){
       return res.status(404).json({
         ok: false,
         message: 'No existe el producto'
@@ -46,7 +46,7 @@ const obtenerProductos = async(req, res) => {
 
     res.status(200).json({
       ok: true,
-      message: registro[0]
+      data: registro[0]
     })
   }catch(e){
     console.error(e)
