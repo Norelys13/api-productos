@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise')
-const { db } = require('./env')
+const {db} = require('./env')
 
-//Este archivo gestiona la conexion al server y a la BD
+//Este archivo gestiona la conexión al SERVER y a la BD
 const pool = mysql.createPool({
   host: db.host,
   port: db.port,
@@ -13,12 +13,10 @@ const pool = mysql.createPool({
   queueLimit: 0
 })
 
-//Verificar la conexión
 const probarConexion = async() => {
-  const conexion = await pool.getConnection()
-  await conexion.ping() //Test
-  conexion.release() //Desconexión
+  const conexión = await pool.getConnection()
+  await conexión.ping
+  conexión.release()
 }
 
-//Exportar la conexión
-module.exports = { pool, probarConexion }
+module.exports = {pool, probarConexion}

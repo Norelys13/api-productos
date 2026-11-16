@@ -1,16 +1,13 @@
-//Nuestra aplicacion puede tener muchos modulos:
-//Productos > productos.controller > producto.routes
-//Clientes > clientes.controller > clientes.routes
-//Proveedores > proveedor.controller > proveedor.routes
-
 const { Router } = require('express')
 
-const productoRoutes = require('./producto.routes')
+const ProductoRoutes = require('./producto.routes')
+const ClienteRoutes = require('./cliente.routes')
+const ProveedorRoutes = require('./proveedor.routes')
 
 const router = Router()
 
-//Esto es por cada routes **
-router.use('/productos', productoRoutes)
+router.use('/productos', ProductoRoutes)
+router.use('/clientes', ClienteRoutes)
+router.use('/proveedores', ProveedorRoutes)
 
-//Se exportan todas las rutas
 module.exports = router
