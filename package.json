@@ -1,13 +1,13 @@
 {
   "name": "api-productos",
   "version": "1.0.0",
-  "description": "Aplicación despliega datos de una tienda",
+  "description": "Aplicación despliegue datos de una tienda ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Norelys Flores",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
